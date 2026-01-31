@@ -33,10 +33,25 @@ Le projet a été optimisé au niveau de la couche logique (Repository & Control
 ---------------------------------------------------------------
 SYNCHRONISATION BASE DE DONNÉES
 ---------------------------------------------------------------
-Rappel : Les modifications dans [Article.php](cci:7://file:///c:/wamp64/www/222-S4/src/Entity/Article.php:0:0-0:0) ne s'appliquent pas seules.
+Rappel : Les modifications dans Article.php ne s'appliquent pas seules.
 Pour ce projet, nous avons utilisé :
    php bin/console doctrine:schema:update --force
 
 En production, il est recommandé d'utiliser les migrations :
    php bin/console make:migration
    php bin/console doctrine:migrations:migrate
+
+---------------------------------------------------------------
+LISTE DES FICHIERS MODIFIÉS OU CRÉÉS
+---------------------------------------------------------------
+BACK-END :
+- src/Entity/Article.php (Logique métier & champs)
+- src/Repository/ArticleRepository.php (Recherche & Pagination)
+- src/Controller/ArticleController.php (Logique de contrôle)
+
+INTERFACE (MODIFICATIONS LÉGÈRES) :
+- templates/article/index.html.twig (Numérotation séquentielle)
+
+MAINTENANCE & DOC :
+- .gitignore (Optimisation Git)
+- readme_max.txt (Documentation actuelle)
