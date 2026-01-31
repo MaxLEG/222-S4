@@ -6,10 +6,20 @@
 <div class="container container-main">
     <h1>📝 Gestion des Articles</h1>
 
+    <div class="search-container mb-4">
+        <form method="get" action="{{ path('article_index') }}" class="d-flex gap-2">
+            <input type="text" name="q" class="form-control" placeholder="Rechercher par titre ou contenu..." value="{{ searchTerm|default('') }}">
+            <button class="btn btn-primary" type="submit">🔍 Rechercher</button>
+            {% if searchTerm is defined and searchTerm is not empty %}
+                <a href="{{ path('article_index') }}" class="btn btn-secondary">❌</a>
+            {% endif %}
+        </form>
+    </div>
+
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>#</th>
                 <th>Title</th>
                 <th>Category</th>
                 <th>Content</th>
@@ -21,11 +31,11 @@
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ article.title }}</td>
                 <td>
-                    {% if article.Category.name is defined %}
-                        {{ article.Category.name }}
+                    {% if article.category.name is defined %}
+                        {{ article.category.name }}
                     {% endif %}
                 </td>
                 <td>{{ article.content }}</td>
