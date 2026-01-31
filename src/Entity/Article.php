@@ -20,13 +20,19 @@ class Article
     private $content;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'articles')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Category;
+    #[ORM\JoinColumn(nullable: true)]
+    private $category;
 
     // #[ORM\Column]
     // private ?bool $published = null;
     #[ORM\Column(type: 'boolean')]
     private bool $published = true;
+
+    #[ORM\Column(type: 'integer')]
+    private int $views = 0;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private ?\DateTimeImmutable $publishedAt = null;
 
 
     public function getId(): ?int
@@ -60,12 +66,12 @@ class Article
 
     public function getCategory(): ?Category
     {
-        return $this->Category;
+        return $this->category;
     }
 
-    public function setCategory(?Category $Category): self
+    public function setCategory(?Category $category): self
     {
-        $this->Category = $Category;
+        $this->category = $category;
 
         return $this;
     }
@@ -78,6 +84,42 @@ class Article
     public function setPublished(bool $published): static
     {
         $this->published = $published;
+
+        // On enregistre la date de publication si l'article est publié et n'en a pas encore
+        if ($published && $this->publishedAt === null) {
+            $this->publishedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(int $views): self
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    public function incrementViews(): self
+    {
+        $this->views++;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeImmutable
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(?\DateTimeImmutable $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }

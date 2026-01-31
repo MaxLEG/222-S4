@@ -492,3 +492,29 @@ form[method="post"] button {
     font-style: italic;
     background-color: var(--background-light);
 }
+
+/* ========================================
+   SEARCH CONTAINER
+   ======================================== */
+.search-container {
+    background-color: var(--background-light);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    border-color: var(--primary-blue);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.search-container input {
+    border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.search-container button {
+    border-radius: 0 0.375rem 0.375rem 0;
+}

@@ -47,4 +47,53 @@ class ArticleRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+     * Recherche un article par titre, contenu ou nom de catégorie
+     */
+    public function findBySearch(string $term)
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.Category', 'c') // Jointure avec la catégorie
+            ->andWhere('a.title LIKE :term OR a.content LIKE :term OR c.name LIKE :term')
+            ->setParameter('term', '%' . $term . '%')
+            ->orderBy('a.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Récupère une liste d'articles paginée
+     */
+    public function findPaginated(int $page, int $limit = 6, array $criteria = []): array
+    {
+        $offset = ($page - 1) * $limit;
+
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit);
+
+        foreach ($criteria as $field => $value) {
+            $qb->andWhere("a.$field = :$field")
+               ->setParameter($field, $value);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Compte le nombre total d'articles (utile pour la pagination)
+     */
+    public function countArticles(array $criteria = []): int
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->select('count(a.id)');
+
+        foreach ($criteria as $field => $value) {
+            $qb->andWhere("a.$field = :$field")
+               ->setParameter($field, $value);
+        }
+
+        return (int) $qb->getQuery()->getSingleScalarResult();
+    }
 }

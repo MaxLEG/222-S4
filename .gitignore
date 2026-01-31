@@ -71,3 +71,14 @@
 
 #phpstorm
 .idea
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+# Divers
+.DS_Store
+*.swp

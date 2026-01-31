@@ -15,13 +15,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
-        // Vue publique : seulement les articles publiés
-        $articles = $articleRepository->findBy(['published' => true]);
+        $searchTerm = $request->query->get('q');
+        $page = $request->query->getInt('page', 1);
+        $limit = 6;
+
+        if ($searchTerm) {
+            $articles = $articleRepository->findBySearch($searchTerm);
+            $totalArticles = count($articles);
+        } else {
+            $criteria = ['published' => true];
+            $articles = $articleRepository->findPaginated($page, $limit, $criteria);
+            $totalArticles = $articleRepository->countArticles($criteria);
+        }
 
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
+            'searchTerm' => $searchTerm,
+            'currentPage' => $page,
+            'totalPages' => ceil($totalArticles / $limit),
         ]);
     }
 
@@ -68,8 +81,12 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(Article $article, EntityManagerInterface $entityManager): Response
     {
+        // On incrémente le compteur de vues au niveau Back-end
+        $article->incrementViews();
+        $entityManager->flush();
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
@@ -109,13 +126,12 @@ class ArticleController extends AbstractController
     #[Route('/{id}', name: 'article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
-        // Inverse l'état publié/dépublié
-        $article->setPublished(!$article->isPublished());
+        // On remplace le simple toggle par une suppression réelle
+        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($article);
+            $entityManager->flush();
+        }
 
-        // Sauvegarde en base
-        $entityManager->flush();
-
-        // Retour à la liste des articles
-        return $this->redirectToRoute('article_index');
+        return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);
     }
 }
