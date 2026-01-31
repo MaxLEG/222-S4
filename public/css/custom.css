@@ -1,29 +1,25 @@
-/* ========================================
-   CHARTE GRAPHIQUE
-   ======================================== */
+/* AS: Theme variables (shared palettiana maniana shuap) */
 :root {
-    --primary-blue: #0d6efd;
-    --primary-dark: #0a58ca;
-    --background-light: #f3f4f6;
-    --text-gray: #4b5563;
-    --text-dark: #1f2937;
+     --primary-blue: #2563eb;
+     --primary-dark: #1d4ed8;
+     --background-light: #f7f7f8;
+     --text-gray: #475569;
+     --text-dark: #111827;
     --border-color: #e5e7eb;
     --white: #ffffff;
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* ========================================
-   GENERAL STYLES
-   ======================================== */
+/* MF: Base styles (typography and layout) */
 body {
     background-color: var(--background-light);
     color: var(--text-gray);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     min-height: 100vh;
 }
@@ -41,12 +37,15 @@ h1 {
     margin-bottom: 2rem;
 }
 
-/* ========================================
-   NAVBAR PERSONNALISÉE
-   ======================================== */
+.active {
+    
+
+}
+
+/* AH: Navbar */
 .navbar {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%) !important;
-    box-shadow: var(--shadow-md);
+    background-color: var(--primary-blue) !important;
+    box-shadow: var(--shadow-sm);
     padding: 1rem 0;
 }
 
@@ -55,11 +54,7 @@ h1 {
     font-size: 1.5rem;
     color: var(--white) !important;
     letter-spacing: 0.5px;
-    transition: transform 0.3s ease;
-}
-
-.navbar-brand:hover {
-    transform: scale(1.05);
+    transition: color 0.2s ease;
 }
 
 .nav-link {
@@ -68,25 +63,23 @@ h1 {
     margin: 0 0.5rem;
     padding: 0.5rem 1rem !important;
     border-radius: 0.375rem;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--white) !important;
-    transform: translateY(-2px);
+    text-decoration: none;
 }
 
-/* ========================================
-   CONTENEUR PRINCIPAL
-   ======================================== */
+/* AH: Layout containers */
 .container-main {
     background-color: var(--white);
     border-radius: 0.75rem;
     padding: 2.5rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
 }
 
@@ -94,9 +87,7 @@ h1 {
     max-width: 1200px;
 }
 
-/* ========================================
-   TABLEAUX
-   ======================================== */
+/* AS: TAAAAABLES */
 .table {
     background-color: var(--white);
     border-radius: 0.5rem;
@@ -106,17 +97,17 @@ h1 {
 }
 
 .table thead {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
-    color: var(--white);
+    background-color: var(--background-light);
+    color: var(--text-dark);
 }
 
 .table thead th {
     border: none;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
+    font-size: 0.8125rem;
+    letter-spacing: 0.4px;
 }
 
 .table tbody tr {
@@ -126,8 +117,6 @@ h1 {
 
 .table tbody tr:hover {
     background-color: var(--background-light);
-    transform: scale(1.01);
-    box-shadow: var(--shadow-sm);
 }
 
 .table tbody td {
@@ -140,9 +129,7 @@ h1 {
     border-bottom: none;
 }
 
-/* ========================================
-   BADGES
-   ======================================== */
+/* MF: Badges */
 .badge {
     padding: 0.5rem 1rem;
     font-weight: 600;
@@ -159,32 +146,29 @@ h1 {
     background-color: var(--text-gray) !important;
 }
 
-/* ========================================
-   BOUTONS
-   ======================================== */
+/* MF: Buttons (just buttons, nothing else) */
 .btn {
     padding: 0.625rem 1.25rem;
     font-weight: 600;
     border-radius: 0.5rem;
-    transition: all 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
     border: none;
     text-decoration: none;
     display: inline-block;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+    background-color: var(--primary-blue);
     color: var(--white);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, #084298 100%);
+    background-color: var(--primary-dark);
 }
 
 .btn-success {
@@ -230,19 +214,16 @@ h1 {
     color: var(--white);
 }
 
-/* ========================================
-   LIENS
-   ======================================== */
+/* AH: Links */
 a {
     color: var(--primary-blue);
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.2s ease;
 }
 
 a:hover {
     color: var(--primary-dark);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .table a {
@@ -258,7 +239,6 @@ a:hover {
     background-color: var(--primary-blue);
     color: var(--white) !important;
     text-decoration: none;
-    transform: translateY(-2px);
 }
 
 /* Lien "Create new" / "back to list" */
@@ -268,80 +248,111 @@ a:hover {
     margin-top: 1rem;
     margin-right: 1rem;
     padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+    background-color: var(--primary-blue);
     color: var(--white) !important;
     border-radius: 0.5rem;
     font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-sm);
+    transition: background-color 0.2s ease;
+    box-shadow: none;
 }
 
 .container > a:hover,
 .container-main > a:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    background-color: var(--primary-dark);
     text-decoration: none;
 }
 
-/* ========================================
-   FORMULAIRES
-   ======================================== */
-.form-control, .form-select {
-    border: 2px solid var(--border-color);
-    border-radius: 0.5rem;
-    padding: 0.75rem;
-    color: var(--text-gray);
-    transition: all 0.3s ease;
+/* AS: forms (shared structure for Article/Category) */
+form {
+    width: 100%;
 }
 
-.form-control:focus, .form-select:focus {
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-    outline: none;
+[id="article"],
+[id="category"] {
+    display: grid;
+    gap: 1rem;
 }
 
+[id="article"] > div,
+[id="category"] > div {
+    display: grid;
+    gap: 0.5rem;
+}
+
+[id="article"] label,
+[id="category"] label,
 .form-label {
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 0.5rem;
 }
 
+[id="article"] input[type="text"],
+[id="article"] textarea,
+[id="article"] select,
+[id="category"] input[type="text"],
+[id="category"] textarea,
+[id="category"] select,
+.form-control,
+.form-select {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: var(--text-gray);
+    background-color: var(--white);
+}
+
+[id="article"] textarea,
+[id="category"] textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+[id="article"] input[type="text"]:focus,
+[id="article"] textarea:focus,
+[id="article"] select:focus,
+[id="category"] input[type="text"]:focus,
+[id="category"] textarea:focus,
+[id="category"] select:focus,
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+
+/* kinda optional*/
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
-/* ========================================
-   CARTES
-   ======================================== */
+/* AH: Cards (minimal) */
 .card {
-    border: none;
+    border: 1px solid var(--border-color);
     border-radius: 0.75rem;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease;
     overflow: hidden;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
 }
 
 .card-header {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
-    color: var(--white);
+    background-color: var(--background-light);
+    color: var(--text-dark);
     font-weight: 600;
-    border: none;
-    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
 }
 
 .card-body {
-    padding: 1.5rem;
+    padding: 1rem;
     background-color: var(--white);
 }
 
-/* ========================================
-   ALERTES
-   ======================================== */
+/* AS: Alerts */
 .alert {
     border: none;
     border-radius: 0.5rem;
@@ -374,9 +385,7 @@ a:hover {
     border-left-color: var(--primary-blue);
 }
 
-/* ========================================
-   PAGINATION
-   ======================================== */
+/* MF: Pagination */
 .pagination {
     margin-top: 2rem;
 }
@@ -393,7 +402,6 @@ a:hover {
     background-color: var(--primary-blue);
     color: var(--white);
     border-color: var(--primary-blue);
-    transform: translateY(-2px);
 }
 
 .page-item.active .page-link {
@@ -401,9 +409,7 @@ a:hover {
     border-color: var(--primary-blue);
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+/* AH: Responsive tweaks */
 @media (max-width: 768px) {
     .container-main {
         padding: 1.5rem;
@@ -431,24 +437,11 @@ a:hover {
 /* ========================================
    ANIMATIONS
    ======================================== */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .container-main {
-    animation: fadeIn 0.5s ease;
+    animation: none;
 }
 
-/* ========================================
-   UTILITAIRES
-   ======================================== */
+/* MF: Utilities */
 .text-muted {
     color: var(--text-gray) !important;
 }
@@ -470,9 +463,7 @@ a:hover {
     margin-bottom: 2rem;
 }
 
-/* ========================================
-   FORMULAIRES INLINE (DELETE, PUBLISH)
-   ======================================== */
+/* AS: Inline forms (delete/publish) */
 form[method="post"] {
     display: inline-block;
     margin: 0;
@@ -482,9 +473,14 @@ form[method="post"] button {
     margin: 0;
 }
 
-/* ========================================
-   PAGE VIDE (NO RECORDS)
-   ======================================== */
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* AH: Empty states */
 .table tbody tr td[colspan] {
     text-align: center;
     padding: 3rem;
@@ -493,22 +489,19 @@ form[method="post"] button {
     background-color: var(--background-light);
 }
 
-/* ========================================
-   SEARCH CONTAINER
-   ======================================== */
+/* MF: Search container (lightweight) */
 .search-container {
     background-color: var(--background-light);
     padding: 1.5rem;
     border-radius: 0.5rem;
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
+    box-shadow: none;
+    transition: border-color 0.2s ease;
 }
 
 .search-container:focus-within {
     border-color: var(--primary-blue);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    box-shadow: none;
 }
 
 .search-container input {

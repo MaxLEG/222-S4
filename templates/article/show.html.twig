@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container container-main">
-    <h1>📄 Détails de l'article</h1>
+    <h1>Détails de l'article</h1>
 
     <table class="table table-bordered">
         <tbody>
@@ -32,8 +32,8 @@
     </table>
 
     <div class="mt-4">
-        <a href="{{ path('article_index') }}" class="btn btn-secondary">⬅️ Retour à la liste</a>
-        <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-warning">✏️ Modifier</a>
+        <a href="{{ path('article_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        <a href="{{ path('article_edit', {'id': article.id}) }}" class="btn btn-warning">Modifier</a>
         {{ include('article/_delete_form.html.twig') }}
     </div>
     </div>

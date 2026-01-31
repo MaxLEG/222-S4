@@ -53,7 +53,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function findBySearch(string $term)
     {
         return $this->createQueryBuilder('a')
-            ->leftJoin('a.Category', 'c') // Jointure avec la catégorie
+            ->leftJoin('a.category', 'c') // Jointure avec la catégorie
             ->andWhere('a.title LIKE :term OR a.content LIKE :term OR c.name LIKE :term')
             ->setParameter('term', '%' . $term . '%')
             ->orderBy('a.id', 'DESC')

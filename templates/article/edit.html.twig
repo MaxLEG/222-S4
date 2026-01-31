@@ -1,11 +1,11 @@
 {% block body %}
     <div class="container container-main">
-        <h1>✏️ Modifier l'article</h1>
+        <h1>Modifier l'article</h1>
 
         {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
 
-        <div class="mt-4">
-            <a href="{{ path('article_index') }}" class="btn btn-secondary">⬅️ Retour à la liste</a>
+        <div class="mt-4 form-actions">
+            <a href="{{ path('article_index') }}" class="btn btn-secondary">Retour à la liste</a>
             {{ include('article/_delete_form.html.twig') }}
         </div>
     </div>
